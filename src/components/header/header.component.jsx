@@ -1,11 +1,15 @@
  import React from "react";
- import {Link , BrowserRouter} from "react-router-dom";
+ import {Link , BrowserRouter} from 'react-router-dom';
+ import { connect } from 'react-redux';
+
+ import { auth } from '../../firebase/firebase.utils';
+ import CartIcon from '../cart-icon/cart-icon.component';
 
  import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg';
 
  import './header.styles.scss';
  
- const Header = () => (
+ const Header = ({currentUser }) => (
     <div className='header'>
    
         <BrowserRouter><Link className='logo-container' to="/">
@@ -20,11 +24,23 @@
             <BrowserRouter><Link className='option' to='/shop'>
                 CONTACT
             </Link></BrowserRouter>
-            
+
+            {
+                currentUser ? (
+                <div className='option' onClick={() => auth.signOut}> SIGN OUT </div>
+                ):
+                 
+                (<BrowserRouter><Link className='option' to='/signin'>
+                    SIGN IN
+                </Link></BrowserRouter>
+            )}
+            <CartIcon />  
         </div>
-    
     </div>  
+ );
 
- )
+ const mapStateToProps =  state => ({ 
+    currentUser: state.user.currentUser
+ })
 
- export default Header;
+ export default connect(mapStateToProps)(Header);  
