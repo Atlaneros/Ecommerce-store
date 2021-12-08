@@ -3,8 +3,11 @@ import React from "react";
 import './custom-button.styes.scss'
 
 
-const CustomButton = ( {children, ...otherProps}) => (
-    <button className='custom-button' {...otherProps}>
+const CustomButton = ( {children, isGoogleSignIn, inverted, ...otherProps}) => (
+    <button 
+        className={`${inverted ? 'inverted' : '' } custom-button`}
+        {...otherProps}
+    >
         {children}
      </button>
 
