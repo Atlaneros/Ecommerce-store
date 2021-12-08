@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
+import FormInput from '../form-input/form-input.component';
+import CustomButton from '../custom-button/custom-button.component';
 
 import {auth, createUserProfileDocument} from '../../firebase/firebase.utils';
 
@@ -30,7 +30,8 @@ class SignUp extends React.Component{
 
         try {
             const{ user }=await auth.createUserWithEmailAndPassword(
-                email, password
+                email,
+                password
                 );
     
             await createUserProfileDocument(user, {displayName});
@@ -52,7 +53,7 @@ class SignUp extends React.Component{
         const{name, value} = event.target;
 
         this.setState({[name] : value});
-    }
+    };
     
     render(){
         const{displayName, email , password, confirmPassword} = this.state;
@@ -62,6 +63,15 @@ class SignUp extends React.Component{
                 <span> Sign up with your email and password</span>
                 <form className='sign-up-form' onSubmit={this.handleSubmit}>
                    
+                    <FormInput
+                        type='text'
+                        name='displayName'
+                        value={displayName}
+                        onChange={this.handleChange}
+                        label='Display Name'
+                        required
+                    />
+
                     <FormInput
                         type='email'
                         name='email'
@@ -73,7 +83,7 @@ class SignUp extends React.Component{
                     
                     <FormInput
                         type='password'
-                        name='pasword'
+                        name='password'
                         value={password}
                         onChange={this.handleChange}
                         label='Password'
@@ -92,7 +102,7 @@ class SignUp extends React.Component{
                 </form>
 
             </div>
-        )
+        );
     }    
 }
 

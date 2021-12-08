@@ -1,10 +1,10 @@
- import React from "react";
+ import React from 'react';
  import {Link , BrowserRouter} from 'react-router-dom';
  import { connect } from 'react-redux';
 
  import { auth } from '../../firebase/firebase.utils';
  import CartIcon from '../cart-icon/cart-icon.component';
- import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
  import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg';
 
@@ -13,7 +13,7 @@
  const Header = ({currentUser, hidden}) => (
     <div className='header'>
    
-        <BrowserRouter><Link className='logo-container' to="/">
+        <BrowserRouter><Link className='logo-container' to='/'>
             <Logo className='' />
         </Link></BrowserRouter>
         
@@ -28,10 +28,11 @@
 
             {
                 currentUser ? (
-                <div className='option' onClick={() => auth.signOut}> SIGN OUT </div>
-                ):
-                 
-                (<BrowserRouter><Link className='option' to='/signin'>
+                <div className='option' onClick={() => auth.signOut()}> 
+                    SIGN OUT
+                </div>
+                ):(
+                <BrowserRouter><Link className='option' to='/signin'>
                     SIGN IN
                 </Link></BrowserRouter>
             )}
@@ -41,7 +42,7 @@
     </div>  
  );
 
- const mapStateToProps =  ({user : {currentUser} , cart: {hidden }}) => ({ 
+ const mapStateToProps =  ({user : {currentUser} , cart: { hidden }}) => ({ 
     currentUser,
     hidden
  });
