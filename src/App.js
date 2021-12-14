@@ -55,9 +55,9 @@ class App extends React.Component {
         (<Redirect to='/' />) : (<SignInAndSignUpPage/>)
       }/>
     </Switch></BrowserRouter>
-
+ 
     </div>
-    );
+    ); 
   }
 }
 
